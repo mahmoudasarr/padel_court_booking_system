@@ -1,0 +1,37 @@
+#pragma once
+#include "HAMZA_Person_.h"
+class Owner : public Person {
+private:
+    int courtsCount = 0;
+
+public:
+    Owner() : Person() {}
+
+    Owner(int id, string name, string gender, int age, string phone, string email)
+        : Person(id, name, gender, age, phone, email) {
+    }
+
+    int getCourtsCount() const {
+        return courtsCount;
+    }
+
+    void setCourtsCount(int count) {
+        courtsCount = count;
+    }
+
+    void incrementCourtsCount() {
+        courtsCount++;
+    }
+
+    void displayInfo() const override {
+        cout << "========================================" << endl;
+        cout << "ID: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Gender: " << gender << endl;
+        cout << "Age: " << age << endl;
+        cout << "Phone: " << phone << endl;
+        cout << "Email: " << email << endl;
+        cout << "Courts Count: " << courtsCount << endl;
+        cout << "========================================" << endl;
+    }
+};

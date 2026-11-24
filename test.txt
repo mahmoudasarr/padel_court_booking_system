@@ -1,0 +1,8 @@
+enter()
++ Renter(id:int, name:string, gender:string,
+age:int, phone:string, email:string)
+
++ setTotalBookings(count:int):void
++ getTotalBookings():int
++ incrementBookings():void
++ displayInfo():void

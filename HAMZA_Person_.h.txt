@@ -1,0 +1,73 @@
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+protected:
+    int id = 0;
+    string name = "";
+    string gender = "";
+    int age = 0;
+    string phone = "";
+    string email = "";
+
+public:
+    Person() {}
+
+    Person(int id, string name, string gender, int age, string phone, string email)
+        : id(id), name(name), gender(gender),
+          age(age), phone(phone), email(email) {
+    }
+
+    int getId() const {
+        return id;
+    }
+
+    void setId(int id) {
+        this->id = id;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    void setName(string name) {
+        this->name = name;
+    }
+
+    string getGender() const {
+        return gender;
+    }
+
+    void setGender(string gender) {
+        this->gender = gender;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    void setAge(int age) {
+        this->age = age;
+    }
+
+    string getPhone() const {
+        return phone;
+    }
+
+    void setPhone(string phone) {
+        this->phone = phone;
+    }
+
+    string getEmail() const {
+        return email;
+    }
+
+    void setEmail(string email) {
+        this->email = email;
+    }
+
+    virtual void displayInfo() const = 0;
+};
+
