@@ -1,5 +1,3 @@
-// tells the compiler to include this file only once in each source file.
-#pragma once
 #include <iostream>
 #include <string>
 
@@ -136,19 +134,42 @@ public:
 class Renter : public Person
 {
 private:
-    int totalBooking = 0;
+    int totalBookings = 0;
 
 public:
-    Renter() : Person() {}
-    Renter(int id, string name, string gender, int age, string phone, string email)
-        : Person(id, name, gender, age, phone, email) {}
-
-    void setTotalBookings()
+    Renter() : Person(), totalBookings(0)
     {
     }
-    int setTotalBookings() const {}
-    void incrementBookings() {}
-    void displayInfo() {};
+
+    Renter(int id, string name, string gender, int age, string phone,
+           string email)
+        : Person(id, name, gender, age, phone, email), totalBookings(0)
+    {
+    }
+
+    void setTotalBookings(int count)
+    {
+        if (count >= 0)
+        {
+            totalBookings = count;
+        }
+    }
+    void incrementBookings()
+    {
+        totalBookings++;
+    }
+    int getTotalBookings() const
+    {
+        return totalBookings;
+    }
+
+    void displayInfo() const override
+    {
+        cout << "ID: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Email: " << email << endl;
+        cout << "Total Bookings: " << totalBookings << endl;
+    }
 };
 class PadelCourt
 {
@@ -173,12 +194,13 @@ public:
         isAvailable = true;
     }
 
-    PadelCourt(int courtId, string name, string location, double costPerHour, int OwnerId, string ownerName)
+    PadelCourt(int courtId, string courtName, string location, double costPerHour, int ownerId, string ownerName)
     {
         this->courtId = courtId;
-        this->courtName = courtId;
+        this->courtName = courtName;
         this->location = location;
-        this->costPerHour = costPerHour;
+        this->costPerHour = 0;
+        this->ownerId = ownerId;
         this->ownerName = ownerName;
         this->isAvailable = true;
         setCostPerHour(costPerHour);
@@ -195,35 +217,57 @@ public:
             cout << "Invalid price! Must be greater than 0.\n";
         }
     }
-    void setisAvailable(bool a) {
+    void setIsAvailable(bool a)
+    {
         isAvailable = a;
     }
     // getter
-    int getCourtId()
+    int getCourtId() const
     {
         return courtId;
     }
-    string getCourtName()
+    int getOwnerId() const
+    {
+        return ownerId;
+    }
+    string getCourtName() const
     {
         return courtName;
     }
-    string getlocation()
+    string getLocation() const
     {
         return location;
     }
-    double getcostPerHour()
+    double getCostPerHour() const
     {
         return costPerHour;
     }
-    string getownerName()
+    string getOwnerName() const
     {
         return ownerName;
     }
-    int getisAvailable()
+    bool getIsAvailable() const
     {
         return isAvailable;
+    }
+    void displayCourtInfo() const
+    {
+        cout << "Court ID: " << courtId << endl;
+        cout << "Name: " << courtName << endl;
+        cout << "Area: " << location << endl;
+        cout << "Price per hour: " << costPerHour << endl;
+        cout << "Owner: " << ownerName << endl;
+        if (isAvailable)
+            cout << "Status: Available" << endl;
+        else
+            cout << "Status: Not Available" << endl;
     }
 };
 int main()
 {
+     PadelCourt c(1, "Court A", "Maadi", 200, 5, "Hamza");
+    c.displayCourtInfo();              // الاسم "Court A" والمالك "Hamza"
+    cout << c.getOwnerId() << endl;    // 5
+    c.setCostPerHour(-50);             // Invalid price
+    c.setCostPerHour(0);  
 }
